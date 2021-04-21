@@ -1,40 +1,80 @@
+# grid = [[4,0,7,0,0,9,0,0,0],
+# 		[6,0,5,0,0,7,0,2,0],
+# 		[0,0,0,0,0,0,8,0,3],
+# 		[5,4,0,7,6,0,3,0,9],
+# 		[3,0,8,2,0,4,5,0,7],
+# 		[9,0,6,0,1,3,0,4,8],
+# 		[2,0,3,0,0,0,0,0,0],
+# 		[0,9,0,3,0,0,1,0,2],
+# 		[0,0,0,9,0,0,4,0,5],
+# ]
 
-grid = [[1,2,3,4,5,6,7,8,9],
-		[2,3,4,5,6,7,8,9,1],
-		[3,3,4,5,6,7,8,9,1],
-		[4,3,4,0,6,7,8,9,1],
-		[5,3,4,5,6,7,8,9,1],
-		[6,3,4,5,6,7,8,9,1],
-		[7,3,4,5,6,7,8,9,1],
-		[8,3,4,5,6,7,8,9,1],
-		[9,3,4,5,6,7,8,9,1]]
+# worlds hardest sudoku
+# grid = [[8,0,0,0,0,0,0,0,0],
+# 		[0,0,3,6,0,0,0,0,0],
+# 		[0,7,0,0,9,0,2,0,0],
+# 		[0,5,0,0,0,7,0,0,0],
+# 		[0,0,0,0,4,5,7,0,0],
+# 		[0,0,0,1,0,0,0,3,0],
+# 		[0,0,1,0,0,0,0,6,8],
+# 		[0,0,8,5,0,0,0,1,0],
+# 		[0,9,0,0,0,0,4,0,0],
+# ]
 
-def print_board(bo):
-	for i_row in range(len(bo)):
+
+grid = [[0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0],
+		[0,0,1,0,0,0,0,0,0],
+		[0,0,0,0,0,0,2,0,0],
+		[0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0],
+]
+
+def print_board(grid):
+	for i_row in range(len(grid)):
 		if i_row % 3 == 0 and i_row != 0:
 			print("- " * 12)
 
-		for i_col in range(len(bo[0])):
+		for i_col in range(len(grid[0])):
 			if i_col % 3 == 0 and i_col != 0:
 				print(" | ", end="")
 
 			if i_col == 8:
-				print(bo[i_row][i_col])
+				print(grid[i_row][i_col])
 
 			else:
-				print(str(bo[i_row][i_col]) + " ", end="")
+				print(str(grid[i_row][i_col]) + " ", end="")
 
 
-def find_empty(bo):
-	for i_row in range(len(bo)):
-		for i_col in range(len(bo[0])):
-			if bo[i_row][i_col] == 0:
+def find_empty(grid):
+	for i_row in range(len(grid)):
+		for i_col in range(len(grid[0])):
+			if grid[i_row][i_col] == 0:
 				return i_row, i_col
 
-print(find_empty(grid))
 
-def solve(bo):
-	pass
+def solve(grid):
+	empty_cell = find_empty(grid)
+
+	if not empty_cell:
+		return True		# Solved!
+	else:
+		row, col = empty_cell
+
+		# loop through 1-9 to try 
+		for i_num in range(1,10):
+			if is_valid(grid, i_num, (row,col)):
+				grid[row][col] = i_num
+
+				if solve(grid):	# recursion
+					return True
+
+				grid[row][col] = 0
+
+		return False
 
 
 
@@ -59,5 +99,8 @@ def is_valid(grid, num,row_col):
 
 
 
-print_board(bo=grid)
+print_board(grid)
+print("*" * 30)
+solve(grid)
+print_board(grid)
 
