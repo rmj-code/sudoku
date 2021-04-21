@@ -1,8 +1,8 @@
 
-grid = [[0,2,3,4,5,6,7,8,9],
+grid = [[1,2,3,4,5,6,7,8,9],
 		[2,3,4,5,6,7,8,9,1],
 		[3,3,4,5,6,7,8,9,1],
-		[4,3,4,5,6,7,8,9,1],
+		[4,3,4,0,6,7,8,9,1],
 		[5,3,4,5,6,7,8,9,1],
 		[6,3,4,5,6,7,8,9,1],
 		[7,3,4,5,6,7,8,9,1],
@@ -26,7 +26,12 @@ def print_board(bo):
 
 
 def find_empty(bo):
-	pass
+	for i_row in range(len(bo)):
+		for i_col in range(len(bo[0])):
+			if bo[i_row][i_col] == 0:
+				return i_row, i_col
+
+print(find_empty(grid))
 
 def solve(bo):
 	pass
