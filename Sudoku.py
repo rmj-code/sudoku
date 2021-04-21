@@ -9,33 +9,21 @@ grid = [[0,2,3,4,5,6,7,8,9],
 		[8,3,4,5,6,7,8,9,1],
 		[9,3,4,5,6,7,8,9,1]]
 
+def print_board(bo):
+	pass
+
+def find_empty(bo):
+	pass
+
+def solve(bo):
+	pass
 
 
 
 
-# print(grid[0][:])
-# print(list(zip(*grid))[0])
-
-# row = 7
-# col = 7
-# mini_grid_r = int(row/3)*3	# Get mini grid (row,col)
-# mini_grid_c = int(col/3)*3	# Get mini grid (row,col)
-# print(grid[row]) # 5th row
-# print(list(zip(*grid))[col]) # 2nd column
-# print(mini_grid_r)
-# print(mini_grid_c)
-# print(list(r[mini_grid_c:mini_grid_c+3] for r in grid[mini_grid_r:mini_grid_r+3]))
-
-# mini_grid=list(r[mini_grid_c:mini_grid_c+3] for r in grid[mini_grid_r:mini_grid_r+3])
-# print(*mini_grid)
-
-# if(7 in rws for rws in mini_grid):
-# 	print("Yes")
-# else:
-# 	print("No")
 
 
-def check_num(num,grid,row_n,col_n):
+def is_valid(num,grid,row_n,col_n):
 	row_list = grid[row_n]					# Get Row as list
 	col_list = list(zip(*grid))[col_n]		# Get Col as list
 	mini_grid_r = int(row_n/3)*3	# Get mini grid (row,col)
@@ -49,11 +37,7 @@ def check_num(num,grid,row_n,col_n):
 	print("mini_grid_c: ",mini_grid_c)
 	print("mini_grid: ",mini_grid)
 
-	# for rw1 in mini_grid:
-	# 	if num in rw1:
-	# 		return("Yes in: ", rw1) 
-	# 	else:
-	# 		return "Not in"
+
 
 
 	if (num in row_list):	# check if in rows
